@@ -1,0 +1,6 @@
+﻿Cake.Core
+FluentAssertions
+HttpMock
+Moq
+Newtonsoft.Json
+NUnit

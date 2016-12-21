@@ -1,0 +1,12 @@
+source https://api.nuget.org/v3/index.json
+
+framework net45
+
+nuget Cake.Core ~> 0.17.0
+nuget FluentAssertions ~>  4.18
+nuget HttpMock
+nuget Moq >= 4.5.29
+nuget Newtonsoft.Json ~> 9.0 redirects: on
+nuget NUnit ~> 3.4
+nuget Octokit ~> 0.23.0
+nuget SemVer.Git.MSBuild ~> 1.1.0 content: once
