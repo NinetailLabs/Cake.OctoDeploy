@@ -18,7 +18,6 @@
 
       <dependencies>
          <dependency id="Cake.Core" version="0.17.0" />
-         <dependency id="Octokit" version="0.23.0">
       </dependencies>
    </metadata>
 
@@ -26,5 +25,6 @@
       <file src="bin/Release/Cake.OctoDeploy.dll" target="lib\net45" />
       <file src="bin/Release/Cake.OctoDeploy.xml" target="lib\net45" />
       <file src="bin/Release/Cake.OctoDeploy.pdb" target="lib\net45" />
+      <file src="bin/Release/Cake.Octokit.dll" target="lib\net45" />
     </files>
 </package>
