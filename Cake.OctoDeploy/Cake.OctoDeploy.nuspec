@@ -13,7 +13,7 @@
       <iconUrl>https://raw.githubusercontent.com/NinetailLabs/Cake.OctoDeploy/master/icon.png</iconUrl>
       <requireLicenseAcceptance>false</requireLicenseAcceptance>
       <copyright>Copyright (c) NineTail Labs 2016</copyright>
-      <releaseNotes>Initial Release</releaseNotes>
+      <releaseNotes>Added missing CakeMethodAlias attribute to methods</releaseNotes>
       <tags>Cake Script Addin GitHub Release</tags>
 
       <dependencies>
