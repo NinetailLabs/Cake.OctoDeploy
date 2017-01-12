@@ -36,6 +36,7 @@ namespace Cake.OctoDeploy
         /// <param name="preRelease">Should the release be published as a pre-release</param>
         /// <param name="octoDeploySettings">OctoDeploy settings</param>
         /// <returns>Id of the Release</returns>
+        [CakeMethodAlias]
         public static int PublishRelease(this ICakeContext context, string tag, string releaseTitle, FilePath releaseNotesFilePath,
             bool draftRelease, bool preRelease, OctoDeploySettings octoDeploySettings)
         {
@@ -54,6 +55,7 @@ namespace Cake.OctoDeploy
         /// <param name="preRelease">Should the release be published as a pre-release</param>
         /// <param name="octoDeploySettings">OctoDeploy settings</param>
         /// <returns>Id of the Release</returns>
+        [CakeMethodAlias]
         public static int PublishRelease(this ICakeContext context, string tag, string releaseTitle, string releaseNotes, bool draftRelease, bool preRelease, OctoDeploySettings octoDeploySettings)
         {
             var client = new GitHubClient(new ProductHeaderValue("Cake.OctoDeploy"), new Uri(GitHubApiBaseUrl))
@@ -100,6 +102,7 @@ namespace Cake.OctoDeploy
         /// <param name="artifactName">Name of the artifact to use on the release</param>
         /// <param name="artifactMimeType">The MIME type of the artifact that is being uploaded</param>
         /// <param name="octoDeploySettings">OctoDeploy Settings</param>
+        [CakeMethodAlias]
         public static void PublishReleaseWithArtifact(this ICakeContext context, string tag, string releaseTitle,
             FilePath releaseNotesFilePath, bool draftRelease, bool preRelease, FilePath artifactPath, string artifactName,
             string artifactMimeType, OctoDeploySettings octoDeploySettings)
@@ -122,6 +125,7 @@ namespace Cake.OctoDeploy
         /// <param name="artifactName">Name of the artifact to use on the release</param>
         /// <param name="artifactMimeType">The MIME type of the artifact that is being uploaded</param>
         /// <param name="octoDeploySettings">OctoDeploy Settings</param>
+        [CakeMethodAlias]
         public static void PublishReleaseWithArtifact(this ICakeContext context, string tag, string releaseTitle,
             string releaseNotes, bool draftRelease, bool preRelease, FilePath artifactPath, string artifactName,
             string artifactMimeType, OctoDeploySettings octoDeploySettings)
@@ -145,6 +149,7 @@ namespace Cake.OctoDeploy
         /// <param name="artifactNames">Names of the artifacts to use on the release</param>
         /// <param name="artifactMimeTypes">The MIME type of the artifact that is being uploaded</param>
         /// <param name="octoDeploySettings">OctoDeploy Settings</param>
+        [CakeMethodAlias]
         public static void PublishReleaseWithArtifacts(this ICakeContext context, string tag, string releaseTitle,
             FilePath releaseNotesFilePath, bool draftRelease, bool preRelease, FilePath[] artifactPaths, string[] artifactNames,
             string[] artifactMimeTypes, OctoDeploySettings octoDeploySettings)
@@ -167,6 +172,7 @@ namespace Cake.OctoDeploy
         /// <param name="artifactNames">Names of the artifacts to use on the release</param>
         /// <param name="artifactMimeTypes">The MIME type of the artifact that is being uploaded</param>
         /// <param name="octoDeploySettings">OctoDeploy Settings</param>
+        [CakeMethodAlias]
         public static void PublishReleaseWithArtifacts(this ICakeContext context, string tag, string releaseTitle,
             string releaseNotes, bool draftRelease, bool preRelease, FilePath[] artifactPaths, string[] artifactNames,
             string[] artifactMimeTypes, OctoDeploySettings octoDeploySettings)
@@ -193,6 +199,7 @@ namespace Cake.OctoDeploy
         /// <param name="artifactName">Name of the artifact to use on the release</param>
         /// <param name="artifactMimeType">The MIME type of the artifact that is being uploaded</param>
         /// <param name="octoDeploySettings">OctoDeploy Settings</param>
+        [CakeMethodAlias]
         public static void UploadArtifact(this ICakeContext context, int releaseId, FilePath artifactPath, string artifactName,
             string artifactMimeType, OctoDeploySettings octoDeploySettings)
         {
