@@ -14,16 +14,10 @@ namespace Cake.OctoDeploy
     [CakeAliasCategory("OctoDeploy")]
     public static class OctoDeployAlias
     {
-        #region Properties
-
         /// <summary>
         /// GitHub Api base URL
         /// </summary>
         public static string GitHubApiBaseUrl { private get; set; } = "https://api.github.com";
-
-        #endregion
-
-        #region Public Methods
 
         /// <summary>
         /// Publish a release on GitHub
@@ -239,7 +233,5 @@ namespace Cake.OctoDeploy
                 }
             }
         }
-
-        #endregion
     }
 }
