@@ -1,18 +1,15 @@
-FRAMEWORK: NET45
+RESTRICTION: == net45
 NUGET
   remote: https://api.nuget.org/v3/index.json
-    Cake.Core (0.17)
-    Castle.Core (3.3.3)
-    FluentAssertions (4.18)
-    HttpMock (1.3.1)
+    Cake.Core (0.21.1)
+    Castle.Core (4.1.1)
+    FluentAssertions (4.19.4)
+    HttpMock (2.1)
       Kayak (>= 0.7.2)
-      log4net (>= 2.0.5)
-      NUnit (>= 3.4.1)
     Kayak (0.7.2)
-    log4net (2.0.5)
-    Moq (4.5.29)
-      Castle.Core (>= 3.3.3)
-    Newtonsoft.Json (9.0.1) - redirects: on
-    NUnit (3.5)
-    Octokit (0.23)
-    SemVer.Git.MSBuild (1.1) - content: once
+    Moq (4.7.99)
+      Castle.Core (>= 4.1.1)
+    Newtonsoft.Json (10.0.3) - redirects: on
+    NUnit (3.8.1)
+    Octokit (0.26)
+    SemVer.Git.MSBuild (1.3) - content: once

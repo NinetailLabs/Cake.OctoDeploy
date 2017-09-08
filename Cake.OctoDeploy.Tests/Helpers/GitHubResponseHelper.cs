@@ -10,8 +10,6 @@ namespace Cake.OctoDeploy.Tests.Helpers
 {
     public class GitHubResponseHelper
     {
-        #region Constructor
-
         public GitHubResponseHelper() 
             : this("")
         {}
@@ -32,8 +30,6 @@ namespace Cake.OctoDeploy.Tests.Helpers
                 Id = 123
             };
         }
-
-        #endregion
 
         public void SetupHttpMockWithValidResponseForReleaseCreation(IHttpServer httpMock, OctoSettingFixture octoSettingMock)
         {
@@ -68,8 +64,6 @@ namespace Cake.OctoDeploy.Tests.Helpers
                 .WithStatus(HttpStatusCode.BadRequest);
         }
 
-        #region Properties
-
         public string GetResponseJson => JsonConvert.SerializeObject(ResponseDummy, new JsonSerializerSettings
         {
             ContractResolver = new LowercaseContractResolver()
@@ -84,7 +78,5 @@ namespace Cake.OctoDeploy.Tests.Helpers
         public GitHubReleaseResponseFixture ResponseDummy { get; }
         public GitHubAssetUploadResponseFixture AssetUploadResponseDummy { get; }
         public static int ReleaseId => 1234;
-
-        #endregion
     }
 }
