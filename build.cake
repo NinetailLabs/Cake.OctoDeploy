@@ -176,8 +176,7 @@ Task ("Default")
 	.IsDependentOn ("OutputVariables")
 	.IsDependentOn ("DiscoverBuildDetails")
 	.IsDependentOn ("Build")
-	.IsDependentOn ("UnitTests")
-	.IsDependentOn ("Nuget");
+	.IsDependentOn ("UnitTests");
 Task ("Release")
 	.IsDependentOn ("OutputVariables")
 	.IsDependentOn ("DiscoverBuildDetails")
