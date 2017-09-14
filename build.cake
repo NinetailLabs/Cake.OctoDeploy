@@ -12,7 +12,7 @@
 //Project Variables
 var projectName = "Cake.OctoDeploy";
 var sln = string.Format("./{0}.sln", projectName);
-var releaseFolder = string.Format("./{0}/bin/Release", projectName);
+var releaseFolder = string.Format("./{0}/bin/Release/net46", projectName);
 var releaseDll = string.Format("/{0}.dll", projectName);
 var nuspecFile = string.Format("./{0}/{0}.nuspec", projectName);
 
