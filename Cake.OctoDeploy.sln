@@ -1,14 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.15
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".paket", ".paket", "{C78F0B10-BE47-49A5-BA84-EA8FAC23237E}"
-	ProjectSection(SolutionItems) = preProject
-		paket.dependencies = paket.dependencies
-	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cake.OctoDeploy", "Cake.OctoDeploy\Cake.OctoDeploy.csproj", "{1256864B-8106-40AD-9436-696460E1541D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cake.OctoDeploy", "Cake.OctoDeploy\Cake.OctoDeploy.csproj", "{1256864B-8106-40AD-9436-696460E1541D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cake.OctoDeploy.Tests", "Cake.OctoDeploy.Tests\Cake.OctoDeploy.Tests.csproj", "{6FE87398-4423-48FC-A25E-99F615409BDF}"
 EndProject
@@ -29,5 +24,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1B57BA26-A36B-462E-9E9E-CA72922B3E1A}
 	EndGlobalSection
 EndGlobal

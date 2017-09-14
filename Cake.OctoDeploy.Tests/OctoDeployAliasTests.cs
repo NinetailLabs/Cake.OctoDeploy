@@ -9,6 +9,7 @@ using NUnit.Framework;
 using System;
 using System.Linq;
 using System.Net;
+using Cake.OctoDeploy;
 
 namespace Cake.OctoDeploy.Tests
 {
@@ -88,7 +89,7 @@ namespace Cake.OctoDeploy.Tests
 
             // assert
             fixture.GetCakeLog.Messages.Last()
-                .Format.Should()
+                .Arguments.First().Should()
                 .Be($"Uploaded artifact {GitHubRequestFixture.Artifact1FilePath.FullPath} to GitHub. Id {123}");
         }
 

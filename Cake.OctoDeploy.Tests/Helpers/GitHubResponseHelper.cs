@@ -12,9 +12,9 @@ namespace Cake.OctoDeploy.Tests.Helpers
     {
         #region Constructor
 
-        public GitHubResponseHelper() 
+        public GitHubResponseHelper()
             : this("")
-        {}
+        { }
 
         public GitHubResponseHelper(string uploadUrl)
         {
