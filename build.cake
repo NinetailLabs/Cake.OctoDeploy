@@ -137,7 +137,6 @@ Task ("GenerateReleaseNotes")
 	});
 
 Task ("Nuget")
-	.WithCriteria (buildType == "master")
 	.Does (() => {
 		if(!testsSucceeded)
 		{
@@ -177,7 +176,8 @@ Task ("Default")
 	.IsDependentOn ("OutputVariables")
 	.IsDependentOn ("DiscoverBuildDetails")
 	.IsDependentOn ("Build")
-	.IsDependentOn ("UnitTests");
+	.IsDependentOn ("UnitTests")
+	.IsDependentOn ("Nuget");
 Task ("Release")
 	.IsDependentOn ("OutputVariables")
 	.IsDependentOn ("DiscoverBuildDetails")
