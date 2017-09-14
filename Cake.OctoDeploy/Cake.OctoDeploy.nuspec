@@ -2,7 +2,7 @@
 <package xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
    <metadata xmlns="http://schemas.microsoft.com/packaging/21.0.07/nuspec.xsd">
       <id>Cake.OctoDeploy</id>
-      <version>0.0.0</version>
+      <version>2.0.0</version>
       <authors>NineTail Labs</authors>
       <owners>NineTail Labs</owners>
       <title>Cake.OctoDeploy</title>
@@ -27,6 +27,7 @@
         </group>
         <group targetFramework="netstandard1.6">
             <dependency id="Cake.Core" version="0.22.0" />
+            <dependency id="Octokit" version="0.26.0">
         </group>
       </dependencies>
    </metadata>
@@ -43,6 +44,6 @@
       <file src="bin/Release/netstandard1.6/Cake.OctoDeploy.dll" target="lib/netstandard1.6" />
       <file src="bin/Release/netstandard1.6/Cake.OctoDeploy.xml" target="lib/netstandard1.6" />
       <file src="bin/Release/netstandard1.6/Cake.OctoDeploy.pdb" target="lib/netstandard1.6" />
-      <file src="bin/Release/netstandard1.6/Octokit.dll" target="lib/netstandard1.6" />
+      <file src="bin/Release/netstandard1.6/Cake.OctoDeploy.deps.json" target="lib/netstandard1.6" />
     </files>
 </package>
