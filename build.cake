@@ -60,7 +60,11 @@ Task ("OutputVariables")
 
 Task ("Build")
 	.Does (() => {
-		DotNetBuild (sln, c => c.Configuration = "Release");
+		NuGetRestore (sln);
+		MSBuild (sln, new MSBuildSettings {
+			ToolVersion = MSBuildToolVersion.VS2017,
+			Configuration = "Release"
+		});
 		var file = MakeAbsolute(Directory(releaseFolder)) + releaseDll;
 		version = GetVersionNumber(file);
 		ciVersion = GetVersionNumberWithContinuesIntegrationNumberAppended(file, buildCounter);
