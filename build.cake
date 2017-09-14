@@ -2,7 +2,6 @@
 #addin nuget:?package=Cake.VersionReader
 #addin nuget:?package=Cake.FileHelpers
 #addin nuget:?package=Cake.Coveralls
-#addin nuget:?package=Cake.PaketRestore
 
 //Tools
 #tool nuget:?package=GitReleaseNotes
@@ -13,10 +12,9 @@
 //Project Variables
 var projectName = "Cake.OctoDeploy";
 var sln = string.Format("./{0}.sln", projectName);
-var releaseFolder = string.Format("./{0}/bin/Release", projectName);
+var releaseFolder = string.Format("./{0}/bin/Release/net46", projectName);
 var releaseDll = string.Format("/{0}.dll", projectName);
 var nuspecFile = string.Format("./{0}/{0}.nuspec", projectName);
-var paketDirectory = "./.paket";
 
 //Unit Tests
 var unitTestFilter = "./*Tests/bin/Release/*.Tests.dll";
@@ -62,7 +60,11 @@ Task ("OutputVariables")
 
 Task ("Build")
 	.Does (() => {
-		DotNetBuild (sln, c => c.Configuration = "Release");
+		NuGetRestore (sln);
+		MSBuild (sln, new MSBuildSettings {
+			ToolVersion = MSBuildToolVersion.VS2017,
+			Configuration = "Release"
+		});
 		var file = MakeAbsolute(Directory(releaseFolder)) + releaseDll;
 		version = GetVersionNumber(file);
 		ciVersion = GetVersionNumberWithContinuesIntegrationNumberAppended(file, buildCounter);
@@ -87,7 +89,6 @@ Task ("UnitTests")
                 ErrorOutputFile = errorResultFile,
                 OutputFile = testResultFile,
                 TeamCity = runningOnTeamCity,
-                Full = true,
                 WorkingDirectory = ".",
                 Work = MakeAbsolute(Directory("."))
             });
@@ -136,7 +137,6 @@ Task ("GenerateReleaseNotes")
 	});
 
 Task ("Nuget")
-	.WithCriteria (buildType == "master")
 	.Does (() => {
 		if(!testsSucceeded)
 		{
@@ -152,19 +152,6 @@ Task ("Nuget")
 			Verbosity = NuGetVerbosity.Detailed,
 			OutputDirectory = "./nupkg/"
 		});	
-	});
-
-//Restore Paket
-Task ("PaketRestore")
-	.Does (() => {
-		StartBlock("Restoring Paket");
-		
-		PaketRestore(MakeAbsolute(Directory(paketDirectory)), new PaketRestoreSettings{
-			RetrieveBootstrapper = true,
-			RetrievePaketExecutable = true
-		});
-
-		EndBlock("Restoring Paket");
 	});
 
 //Push to Nuget
@@ -188,13 +175,11 @@ Task ("Push")
 Task ("Default")
 	.IsDependentOn ("OutputVariables")
 	.IsDependentOn ("DiscoverBuildDetails")
-	.IsDependentOn ("PaketRestore")
 	.IsDependentOn ("Build")
 	.IsDependentOn ("UnitTests");
 Task ("Release")
 	.IsDependentOn ("OutputVariables")
 	.IsDependentOn ("DiscoverBuildDetails")
-	.IsDependentOn ("PaketRestore")
 	.IsDependentOn ("Build")
 	.IsDependentOn ("UnitTests")
 	.IsDependentOn ("CoverageUpload")

@@ -1,4 +1,6 @@
-﻿namespace Cake.OctoDeploy.Tests.Fixtures
+﻿using Cake.OctoDeploy;
+
+namespace Cake.OctoDeploy.Tests.Fixtures
 {
     public class OctoSettingFixture
     {
