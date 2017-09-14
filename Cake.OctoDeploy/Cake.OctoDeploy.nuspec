@@ -13,18 +13,25 @@
       <iconUrl>https://raw.githubusercontent.com/NinetailLabs/Cake.OctoDeploy/master/icon.png</iconUrl>
       <requireLicenseAcceptance>false</requireLicenseAcceptance>
       <copyright>Copyright (c) NineTail Labs 2016</copyright>
-      <releaseNotes>Added missing CakeMethodAlias attribute to methods</releaseNotes>
+      <releaseNotes>Updated icon
+      Updated Cake version
+      Multi-target to .net46 and .netstandard1.6</releaseNotes>
       <tags>Cake Script Addin GitHub Release</tags>
 
       <dependencies>
-         <dependency id="Cake.Core" version="0.17.0" />
+         <dependency id="Cake.Core" version="0.22.0" />
       </dependencies>
    </metadata>
 
    <files>
-      <file src="bin/Release/Cake.OctoDeploy.dll" target="lib\net45" />
-      <file src="bin/Release/Cake.OctoDeploy.xml" target="lib\net45" />
-      <file src="bin/Release/Cake.OctoDeploy.pdb" target="lib\net45" />
-      <file src="bin/Release/Octokit.dll" target="lib\net45" />
+      <file src="bin/Release/net46/Cake.OctoDeploy.dll" target="lib\net46" />
+      <file src="bin/Release/net46/Cake.OctoDeploy.xml" target="lib\net46" />
+      <file src="bin/Release/net46/Cake.OctoDeploy.pdb" target="lib\net46" />
+      <file src="bin/Release/net46/Octokit.dll" target="lib\net46" />
+     
+      <file src="bin/Release/netstandard1.6/Cake.OctoDeploy.dll" target="lib\netstandard1.6" />
+      <file src="bin/Release/netstandard1.6/Cake.OctoDeploy.xml" target="lib\netstandard1.6" />
+      <file src="bin/Release/netstandard1.6/Cake.OctoDeploy.pdb" target="lib\netstandard1.6" />
+      <file src="bin/Release/netstandard1.6/Octokit.dll" target="lib\netstandard1.6" />
     </files>
 </package>
