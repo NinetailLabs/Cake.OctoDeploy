@@ -13,9 +13,7 @@
       <iconUrl>https://raw.githubusercontent.com/NinetailLabs/Cake.OctoDeploy/master/icon.png</iconUrl>
       <requireLicenseAcceptance>false</requireLicenseAcceptance>
       <copyright>Copyright (c) NineTail Labs 2016</copyright>
-      <releaseNotes>Updated icon
-      Updated Cake version
-      Multi-target to .net45, .net46 and .netstandard1.6</releaseNotes>
+      <releaseNotes>NetStandard release missing Octokit</releaseNotes>
       <tags>Cake Script Addin GitHub Release</tags>
 
       <dependencies>
@@ -27,7 +25,6 @@
         </group>
         <group targetFramework="netstandard1.6">
             <dependency id="Cake.Core" version="0.22.0" />
-            <dependency id="Octokit" version="0.26.0" />
         </group>
       </dependencies>
    </metadata>
@@ -44,6 +41,6 @@
       <file src="bin/Release/netstandard1.6/Cake.OctoDeploy.dll" target="lib\netstandard1.6" />
       <file src="bin/Release/netstandard1.6/Cake.OctoDeploy.xml" target="lib\netstandard1.6" />
       <file src="bin/Release/netstandard1.6/Cake.OctoDeploy.pdb" target="lib\netstandard1.6" />
-      <file src="bin/Release/netstandard1.6/Cake.OctoDeploy.deps.json" target="lib\netstandard1.6" />
+      <file src="bin/Release/netstandard1.6/Octokit.dll" target="lib\netstandard1.6" />
     </files>
 </package>
