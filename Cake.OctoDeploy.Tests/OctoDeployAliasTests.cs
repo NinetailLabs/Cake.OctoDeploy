@@ -37,6 +37,27 @@ namespace Cake.OctoDeploy.Tests
         }
 
         [Test]
+        public void ApiValidationErrorDuringPublishLogsTheError()
+        {
+            // arrange
+            var fixture = new CakeOctoDeployAliasFixture();
+            OctoDeployAlias.GitHubApiBaseUrl = GitHubRequestFixture.BaseUrl;
+            var httpMock = HttpMockRepository.At(GitHubRequestFixture.BaseUrl);
+            httpMock.Stub(x => x.Post($"/api/v3/repos/{fixture.OctoSettingMock.Owner}/{fixture.OctoSettingMock.Repository}/releases"))
+                .Return("{\"message\": \"Validation Failed\",  \"errors\": [ { \"resource\": \"Issue\", \"field\": \"title\", \"code\": \"missing_field\" } ]}")
+                .WithStatus(HttpStatusCode.BadRequest);
+
+            var act = new Action(() => fixture.GetCakeContext.PublishRelease(GitHubRequestFixture.Tag, GitHubRequestFixture.Title, GitHubRequestFixture.ReleaseNotes, GitHubRequestFixture.IsDraft, GitHubRequestFixture.IsPreRelease, fixture.OctoSettingMock.GetSettings));
+
+            // act
+            // assert
+            act.ShouldThrow<CakeException>();
+            fixture.GetCakeLog.Messages.Last()
+                .Arguments.First()
+                .Should().Be("Resource: Issue, Field: title, Code: missing_field");
+        }
+
+        [Test]
         public void PublishBasicReleaseThrowsAnExceptionIfAServerErrorOccurs()
         {
             // arrange
