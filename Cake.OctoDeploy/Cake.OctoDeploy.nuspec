@@ -10,37 +10,22 @@
       <summary>Cake addin for easy creation of GitHub releases.</summary>
       <licenseUrl>https://raw.githubusercontent.com/NinetailLabs/Cake.OctoDeploy/master/LICENSE</licenseUrl>
       <projectUrl>https://github.com/NinetailLabs/Cake.OctoDeploy</projectUrl>
-      <iconUrl>https://raw.githubusercontent.com/NinetailLabs/Cake.OctoDeploy/master/icon.png</iconUrl>
+      <iconUrl>https://cdn.rawgit.com/cake-contrib/graphics/a5cf0f881c390650144b2243ae551d5b9f836196/png/cake-contrib-medium.png</iconUrl>
       <requireLicenseAcceptance>false</requireLicenseAcceptance>
-      <copyright>Copyright (c) NineTail Labs 2016</copyright>
-      <releaseNotes>NetStandard release missing Octokit</releaseNotes>
+      <copyright>Copyright (c) NineTail Labs 2018</copyright>
+      <releaseNotes>Use NetStandard2.0
+        Updated Cake requirement to v0.28.0</releaseNotes>
       <tags>Cake Script Addin GitHub Release</tags>
 
       <dependencies>
-        <group targetFramework="net45">
-            <dependency id="Cake.Core" version="0.17.0" />
-        </group>
-        <group targetFramework="net46">
-            <dependency id="Cake.Core" version="0.22.0" />
-        </group>
-        <group targetFramework="netstandard1.6">
-            <dependency id="Cake.Core" version="0.22.0" />
-        </group>
+          <dependency id="Cake.Core" version="0.28.0" />
       </dependencies>
    </metadata>
 
    <files>
-      <file src="bin/Release/net45/Cake.OctoDeploy.dll" target="lib\net45" />
-      <file src="bin/Release/net45/Cake.OctoDeploy.xml" target="lib\net45" />
-      <file src="bin/Release/net45/Cake.OctoDeploy.pdb" target="lib\net45" />
-      <file src="bin/Release/net45/Octokit.dll" target="lib\net45" />   
-      <file src="bin/Release/net46/Cake.OctoDeploy.dll" target="lib\net46" />
-      <file src="bin/Release/net46/Cake.OctoDeploy.xml" target="lib\net46" />
-      <file src="bin/Release/net46/Cake.OctoDeploy.pdb" target="lib\net46" />
-      <file src="bin/Release/net46/Octokit.dll" target="lib\net46" />     
-      <file src="bin/Release/netstandard1.6/Cake.OctoDeploy.dll" target="lib\netstandard1.6" />
-      <file src="bin/Release/netstandard1.6/Cake.OctoDeploy.xml" target="lib\netstandard1.6" />
-      <file src="bin/Release/netstandard1.6/Cake.OctoDeploy.pdb" target="lib\netstandard1.6" />
-      <file src="bin/Release/netstandard1.6/Octokit.dll" target="lib\netstandard1.6" />
+      <file src="bin/Release/netstandard2.0/Cake.OctoDeploy.dll" target="lib\netstandard2.0" />
+      <file src="bin/Release/netstandard2.0/Cake.OctoDeploy.xml" target="lib\netstandard2.0" />
+      <file src="bin/Release/netstandard2.0/Cake.OctoDeploy.pdb" target="lib\netstandard2.0" />
+      <file src="bin/Release/netstandard2.0/Octokit.dll" target="lib\netstandard2.0" />
     </files>
 </package>

@@ -33,7 +33,7 @@ namespace Cake.OctoDeploy.Tests
 
             // act
             // assert
-            act.ShouldThrow<CakeException>("Unknown error occured while creating release");
+            act.Should().Throw<CakeException>("Unknown error occured while creating release");
         }
 
         [Test]
@@ -51,7 +51,7 @@ namespace Cake.OctoDeploy.Tests
 
             // act
             // assert
-            act.ShouldThrow<CakeException>();
+            act.Should().Throw<CakeException>();
             fixture.GetCakeLog.Messages.Last()
                 .Arguments.First()
                 .Should().Be("Resource: Issue, Field: title, Code: missing_field");
@@ -71,7 +71,7 @@ namespace Cake.OctoDeploy.Tests
 
             // act
             // assert
-            act.ShouldThrow<CakeException>();
+            act.Should().Throw<CakeException>();
         }
 
         [Test]
@@ -155,7 +155,7 @@ namespace Cake.OctoDeploy.Tests
 
             // act
             // assert
-            act.ShouldNotThrow<CakeException>();
+            act.Should().NotThrow<CakeException>();
         }
 
         [Test]
@@ -180,7 +180,7 @@ namespace Cake.OctoDeploy.Tests
 
             // act
             // assert
-            act.ShouldNotThrow<CakeException>();
+            act.Should().NotThrow<CakeException>();
         }
 
         [Test]
@@ -199,7 +199,7 @@ namespace Cake.OctoDeploy.Tests
 
             // act
             // assert
-            act.ShouldThrow<CakeException>(
+            act.Should().Throw<CakeException>(
                 "ArtifactPaths, ArtifactNames and ArtifactMimeTypes all need to be the same length");
         }
 
@@ -225,7 +225,7 @@ namespace Cake.OctoDeploy.Tests
 
             // act
             // assert
-            act.ShouldNotThrow<CakeException>();
+            act.Should().NotThrow<CakeException>();
         }
 
         [Test]
@@ -250,7 +250,7 @@ namespace Cake.OctoDeploy.Tests
 
             // act
             // assert
-            act.ShouldNotThrow<CakeException>();
+            act.Should().NotThrow<CakeException>();
         }
 
         #endregion
