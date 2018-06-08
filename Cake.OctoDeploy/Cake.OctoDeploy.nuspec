@@ -23,17 +23,9 @@
    </metadata>
 
    <files>
-      <file src="bin/Release/net45/Cake.OctoDeploy.dll" target="lib\net45" />
-      <file src="bin/Release/net45/Cake.OctoDeploy.xml" target="lib\net45" />
-      <file src="bin/Release/net45/Cake.OctoDeploy.pdb" target="lib\net45" />
-      <file src="bin/Release/net45/Octokit.dll" target="lib\net45" />   
-      <file src="bin/Release/net46/Cake.OctoDeploy.dll" target="lib\net46" />
-      <file src="bin/Release/net46/Cake.OctoDeploy.xml" target="lib\net46" />
-      <file src="bin/Release/net46/Cake.OctoDeploy.pdb" target="lib\net46" />
-      <file src="bin/Release/net46/Octokit.dll" target="lib\net46" />     
-      <file src="bin/Release/netstandard1.6/Cake.OctoDeploy.dll" target="lib\netstandard1.6" />
-      <file src="bin/Release/netstandard1.6/Cake.OctoDeploy.xml" target="lib\netstandard1.6" />
-      <file src="bin/Release/netstandard1.6/Cake.OctoDeploy.pdb" target="lib\netstandard1.6" />
-      <file src="bin/Release/netstandard1.6/Octokit.dll" target="lib\netstandard1.6" />
+      <file src="bin/Release/netstandard2.0/Cake.OctoDeploy.dll" target="lib\netstandard2.0" />
+      <file src="bin/Release/netstandard2.0/Cake.OctoDeploy.xml" target="lib\netstandard2.0" />
+      <file src="bin/Release/netstandard2.0/Cake.OctoDeploy.pdb" target="lib\netstandard2.0" />
+      <file src="bin/Release/netstandard2.0/Octokit.dll" target="lib\netstandard2.0" />
     </files>
 </package>
