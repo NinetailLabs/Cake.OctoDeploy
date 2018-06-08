@@ -5,6 +5,7 @@ using Cake.Core.IO;
 using Octokit;
 using System;
 using System.IO;
+using System.Linq;
 
 namespace Cake.OctoDeploy
 {
@@ -85,6 +86,14 @@ namespace Cake.OctoDeploy
             catch (AggregateException exception)
             {
                 var innerException = exception.InnerException;
+                if (innerException is ApiException validationException)
+                {
+                    foreach (var error in validationException.ApiError.Errors ?? Enumerable.Empty<ApiErrorDetail>())
+                    {
+                        context.Log.Error($"Resource: {error.Resource}, Field: {error.Field}, Code: {error.Code}");
+                    }
+                }
+
                 throw new CakeException(string.IsNullOrEmpty(innerException?.Message) ? "Unknown error occured while creating release" : innerException.Message);
             }
         }
@@ -235,6 +244,7 @@ namespace Cake.OctoDeploy
                 catch (Exception exception)
                 {
                     var innerException = exception.InnerException;
+                    
                     throw new CakeException(string.IsNullOrEmpty(innerException?.Message) ? "Unknown error occured while creating release" : innerException.Message);
                 }
             }
