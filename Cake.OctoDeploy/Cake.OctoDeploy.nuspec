@@ -12,20 +12,13 @@
       <projectUrl>https://github.com/NinetailLabs/Cake.OctoDeploy</projectUrl>
       <iconUrl>https://raw.githubusercontent.com/NinetailLabs/Cake.OctoDeploy/master/icon.png</iconUrl>
       <requireLicenseAcceptance>false</requireLicenseAcceptance>
-      <copyright>Copyright (c) NineTail Labs 2016</copyright>
-      <releaseNotes>NetStandard release missing Octokit</releaseNotes>
+      <copyright>Copyright (c) NineTail Labs 2018</copyright>
+      <releaseNotes>Use NetStandard2.0
+        Updated Cake requirement to v0.28.0</releaseNotes>
       <tags>Cake Script Addin GitHub Release</tags>
 
       <dependencies>
-        <group targetFramework="net45">
-            <dependency id="Cake.Core" version="0.17.0" />
-        </group>
-        <group targetFramework="net46">
-            <dependency id="Cake.Core" version="0.22.0" />
-        </group>
-        <group targetFramework="netstandard1.6">
-            <dependency id="Cake.Core" version="0.22.0" />
-        </group>
+          <dependency id="Cake.Core" version="0.28.0" />
       </dependencies>
    </metadata>
 
