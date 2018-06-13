@@ -250,6 +250,53 @@ namespace Cake.OctoDeploy
             }
         }
 
+        /// <summary>
+        /// Upload an artifact to an existing release
+        /// </summary>
+        /// <param name="context">Cake context</param>
+        /// <param name="releaseName">Title of the Release to which the asset should be attached</param>
+        /// <param name="artifactPath">Path to the artifact to upload</param>
+        /// <param name="artifactName">Name of the artifact to use on the release</param>
+        /// <param name="artifactMimeType">The MIME type of the artifact that is being uploaded</param>
+        /// <param name="octoDeploySettings">OctoDeploy Settings</param>
+        [CakeMethodAlias]
+        public static void UploadArtifact(this ICakeContext context, string releaseName, FilePath artifactPath,
+            string artifactName, string artifactMimeType, OctoDeploySettings octoDeploySettings)
+        {
+            var client = new GitHubClient(new ProductHeaderValue("Cake.OctoDeploy"), new Uri(GitHubApiBaseUrl))
+            {
+                Credentials = new Credentials(octoDeploySettings.AccessToken)
+            };
+
+            try
+            {
+                var releases = client.Repository
+                    .Release
+                    .GetAll(octoDeploySettings.Owner, octoDeploySettings.Repository)
+                    .Result;
+
+                var namedReleases = releases.Where(x => x.Name == releaseName).ToArray();
+
+                if (!namedReleases.Any())
+                {
+                    throw new CakeException($"No releases named {releaseName} found");
+                }
+
+                if (namedReleases.Length > 1)
+                {
+                    throw new CakeException($"Multiple releases named {releaseName} found, cannot determine the release to use");
+                }
+
+                UploadArtifact(context, namedReleases.First().Id, artifactPath, artifactName, artifactMimeType, octoDeploySettings);
+            }
+            catch (Exception exception)
+            {
+                var innerException = exception.InnerException;
+
+                throw new CakeException(string.IsNullOrEmpty(innerException?.Message) ? "Unknown error occured while creating release" : innerException.Message);
+            }
+        }
+
         #endregion
     }
 }
