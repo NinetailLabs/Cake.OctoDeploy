@@ -23,7 +23,7 @@ namespace Cake.OctoDeploy.Tests.Helpers
                 Assets = new List<object>(),
                 Author = new Author(),
                 Id = ReleaseId,
-                Name = ReleaseId.ToString(),
+                TagName = ReleaseId.ToString(),
                 CreatedAt = DateTime.Now.ToString(CultureInfo.InvariantCulture),
                 UploadUrl = uploadUrl
             };

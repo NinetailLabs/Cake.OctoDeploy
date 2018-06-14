@@ -115,7 +115,7 @@ namespace Cake.OctoDeploy.Tests
         }
 
         [Test]
-        public void UploadArtifactByReleaseTitleWorksCorrectly()
+        public void UploadArtifactByTageWorksCorrectly()
         {
             // arrange
             var fixture = new CakeOctoDeployAliasFixture();

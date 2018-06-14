@@ -254,13 +254,13 @@ namespace Cake.OctoDeploy
         /// Upload an artifact to an existing release
         /// </summary>
         /// <param name="context">Cake context</param>
-        /// <param name="releaseName">Title of the Release to which the asset should be attached</param>
+        /// <param name="tagName">Git tag of the Release to which the asset should be attached</param>
         /// <param name="artifactPath">Path to the artifact to upload</param>
         /// <param name="artifactName">Name of the artifact to use on the release</param>
         /// <param name="artifactMimeType">The MIME type of the artifact that is being uploaded</param>
         /// <param name="octoDeploySettings">OctoDeploy Settings</param>
         [CakeMethodAlias]
-        public static void UploadArtifact(this ICakeContext context, string releaseName, FilePath artifactPath,
+        public static void UploadArtifact(this ICakeContext context, string tagName, FilePath artifactPath,
             string artifactName, string artifactMimeType, OctoDeploySettings octoDeploySettings)
         {
             var client = new GitHubClient(new ProductHeaderValue("Cake.OctoDeploy"), new Uri(GitHubApiBaseUrl))
@@ -275,19 +275,19 @@ namespace Cake.OctoDeploy
                     .GetAll(octoDeploySettings.Owner, octoDeploySettings.Repository)
                     .Result;
 
-                var namedReleases = releases.Where(x => x.Name == releaseName).ToArray();
+                var namedReleases = releases.Where(x => x.TagName == tagName).ToArray();
 
                 if (!namedReleases.Any())
                 {
-                    throw new CakeException($"No releases named {releaseName} found");
+                    throw new CakeException($"No releases with tag '{tagName}' found");
                 }
 
-                if (namedReleases.Length > 1)
+                var releaseIds = namedReleases.Select(x => x.Id).Distinct();
+
+                foreach (var releaseId in releaseIds)
                 {
-                    throw new CakeException($"Multiple releases named {releaseName} found, cannot determine the release to use");
+                    UploadArtifact(context, releaseId, artifactPath, artifactName, artifactMimeType, octoDeploySettings);
                 }
-
-                UploadArtifact(context, namedReleases.First().Id, artifactPath, artifactName, artifactMimeType, octoDeploySettings);
             }
             catch (Exception exception)
             {
