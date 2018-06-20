@@ -115,6 +115,28 @@ namespace Cake.OctoDeploy.Tests
         }
 
         [Test]
+        public void UploadArtifactByTageWorksCorrectly()
+        {
+            // arrange
+            var fixture = new CakeOctoDeployAliasFixture();
+            var responseDummy = new GitHubResponseHelper($"{GitHubRequestFixture.BaseUrl}/repos/{fixture.OctoSettingMock.Owner}/{fixture.OctoSettingMock.Repository}/releases/{GitHubResponseHelper.ReleaseId}/assets{{?name,label}}");
+
+            OctoDeployAlias.GitHubApiBaseUrl = GitHubRequestFixture.BaseUrl;
+            var httpMock = HttpMockRepository.At(GitHubRequestFixture.BaseUrl);
+            responseDummy.SetupHttpMockWithValidResponseForAllReleasesRetrieval(httpMock, fixture.OctoSettingMock);
+            responseDummy.SetupHttpMockWithValidResponseForReleaseRetrieval(httpMock, fixture.OctoSettingMock);
+            responseDummy.SetupHttpMockWithValidAssetUploadResponse(httpMock, fixture.OctoSettingMock);
+
+            // act
+            fixture.GetCakeContext.UploadArtifact(GitHubResponseHelper.ReleaseName, GitHubRequestFixture.Artifact1FilePath, GitHubRequestFixture.Artifact1Name, GitHubRequestFixture.MimeType, fixture.OctoSettingMock.GetSettings);
+
+            // assert
+            fixture.GetCakeLog.Messages.Last()
+                .Arguments.First().Should()
+                .Be($"Uploaded artifact {GitHubRequestFixture.Artifact1FilePath.FullPath} to GitHub. Id {123}");
+        }
+
+        [Test]
         public void PublishReleaseWithReleaseNotesInFileWorksCorrectly()
         {
             // arrange

@@ -45,6 +45,7 @@ namespace Cake.OctoDeploy.Tests.Fixtures
         public bool Prerelease { get; set; }
         [JsonProperty("published_at")]
         public string PublishedAt { get; set; }
+        [JsonProperty("tag_name")]
         public string TagName { get; set; }
         public string TarballUrl { get; set; }
         public string TargetCommitish { get; set; }
