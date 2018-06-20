@@ -23,8 +23,14 @@ namespace Cake.OctoDeploy.Tests.Helpers
                 Assets = new List<object>(),
                 Author = new Author(),
                 Id = ReleaseId,
+                TagName = ReleaseId.ToString(),
                 CreatedAt = DateTime.Now.ToString(CultureInfo.InvariantCulture),
                 UploadUrl = uploadUrl
+            };
+
+            AllResponsesDummy = new[]
+            {
+                ResponseDummy
             };
 
             AssetUploadResponseDummy = new GitHubAssetUploadResponseFixture
@@ -68,9 +74,23 @@ namespace Cake.OctoDeploy.Tests.Helpers
                 .WithStatus(HttpStatusCode.BadRequest);
         }
 
+        public void SetupHttpMockWithValidResponseForAllReleasesRetrieval(IHttpServer httpMock,
+            OctoSettingFixture octoSettingFixture)
+        {
+            httpMock.Stub(x => x.Get($"/api/v3/repos/{octoSettingFixture.Owner}/{octoSettingFixture.Repository}/releases"))
+                .AsContentType("application/json")
+                .Return(GetAllResponsesJson)
+                .OK();
+        }
+
         #region Properties
 
         public string GetResponseJson => JsonConvert.SerializeObject(ResponseDummy, new JsonSerializerSettings
+        {
+            ContractResolver = new LowercaseContractResolver()
+        });
+
+        public string GetAllResponsesJson => JsonConvert.SerializeObject(AllResponsesDummy, new JsonSerializerSettings
         {
             ContractResolver = new LowercaseContractResolver()
         });
@@ -82,8 +102,10 @@ namespace Cake.OctoDeploy.Tests.Helpers
             });
 
         public GitHubReleaseResponseFixture ResponseDummy { get; }
+        public GitHubReleaseResponseFixture[] AllResponsesDummy { get; }
         public GitHubAssetUploadResponseFixture AssetUploadResponseDummy { get; }
         public static int ReleaseId => 1234;
+        public static string ReleaseName = "1234";
 
         #endregion
     }
