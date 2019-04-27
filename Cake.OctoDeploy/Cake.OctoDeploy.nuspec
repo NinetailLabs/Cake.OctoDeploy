@@ -13,8 +13,8 @@
       <iconUrl>https://cdn.jsdelivr.net/gh/cake-contrib/graphics/png/cake-contrib-medium.png</iconUrl>
       <requireLicenseAcceptance>false</requireLicenseAcceptance>
       <copyright>Copyright (c) NineTail Labs 2018</copyright>
-      <releaseNotes>Use NetStandard2.0
-        Updated Cake requirement to v0.28.0</releaseNotes>
+      <releaseNotes>Cake version update
+        Updated Cake requirement to v0.33.0</releaseNotes>
       <tags>Cake Script Addin GitHub Release</tags>
 
       <dependencies>
