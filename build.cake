@@ -1,13 +1,13 @@
 ﻿//Addins
-#addin nuget:?package=Cake.VersionReader
-#addin nuget:?package=Cake.FileHelpers
-#addin nuget:?package=Cake.Coveralls
+#addin nuget:?package=Cake.VersionReader&version=5.1.0
+#addin nuget:?package=Cake.FileHelpers&version=3.2.0
+#addin nuget:?package=Cake.Coveralls&version=0.9.0
 
 //Tools
-#tool nuget:?package=GitReleaseNotes
-#tool nuget:?package=NUnit.ConsoleRunner
-#tool nuget:?package=OpenCover
-#tool coveralls.io
+#tool nuget:?package=GitReleaseNotes&version=0.7.1
+#tool nuget:?package=NUnit.ConsoleRunner&version=3.10.0
+#tool nuget:?package=OpenCover&version=4.7.922
+#tool coveralls.io&version=1.3.4
 
 //Project Variables
 var projectName = "Cake.OctoDeploy";
@@ -19,7 +19,6 @@ var nuspecFile = string.Format("./{0}/{0}.nuspec", projectName);
 //Unit Tests
 var unitTestFilter = "./*Tests/bin/Release/*.Tests.dll";
 var testResultFile = "./TestResult.xml";
-var errorResultFile = "./ErrorResult.xml";
 var releaseNotes = "./ReleaseNotes.md";
 var testsSucceeded = true;
 
@@ -81,32 +80,39 @@ Task ("UnitTests")
         StartBlock(blockText);
 
         var testAssemblies = GetFiles(unitTestFilter);
+		var testsSucceeded = false;
 
-        OpenCover(tool =>
-        {
-            tool.NUnit3(testAssemblies, new NUnit3Settings
-            {
-                ErrorOutputFile = errorResultFile,
-                OutputFile = testResultFile,
-                TeamCity = runningOnTeamCity,
-                WorkingDirectory = ".",
-                Work = MakeAbsolute(Directory("."))
-            });
-        },
-        new FilePath(coverPath),
-        new OpenCoverSettings()
-			.WithFilter(string.Format("+[{0}]*", projectName))
-			.WithFilter(string.Format("-[{0}.Tests]*", projectName))
-			.ExcludeByAttribute("System.CodeDom.Compiler.GeneratedCodeAttribute")
-        );
+		try
+		{
+			OpenCover(tool =>
+			{
+				tool.NUnit3(testAssemblies, new NUnit3Settings
+				{
+					OutputFile = testResultFile,
+					TeamCity = runningOnTeamCity,
+					WorkingDirectory = ".",
+					Work = MakeAbsolute(Directory("."))
+				});
+			},
+			new FilePath(coverPath),
+			new OpenCoverSettings()
+				.WithFilter(string.Format("+[{0}]*", projectName))
+				.WithFilter(string.Format("-[{0}.Tests]*", projectName))
+				.ExcludeByAttribute("System.CodeDom.Compiler.GeneratedCodeAttribute")
+			);
+			testsSucceeded = true;
+		}
+		catch(Exception)
+		{
+			Error("There was an error while executing tests");
+		}
 
         PushTestResults(testResultFile);
 
-        if(FileExists(errorResultFile) && FileReadLines(errorResultFile).Count() > 0)
-        {
-            Information("Unit tests failed");
-            testsSucceeded = false;
-        }
+		if(!testsSucceeded)
+		{
+			throw new CakeException("An error occured while executing unit tests - Build cannot continue");
+		}
 
         EndBlock(blockText);
     });

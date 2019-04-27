@@ -10,15 +10,15 @@
       <summary>Cake addin for easy creation of GitHub releases.</summary>
       <licenseUrl>https://raw.githubusercontent.com/NinetailLabs/Cake.OctoDeploy/master/LICENSE</licenseUrl>
       <projectUrl>https://github.com/NinetailLabs/Cake.OctoDeploy</projectUrl>
-      <iconUrl>https://cdn.rawgit.com/cake-contrib/graphics/a5cf0f881c390650144b2243ae551d5b9f836196/png/cake-contrib-medium.png</iconUrl>
+      <iconUrl>https://cdn.jsdelivr.net/gh/cake-contrib/graphics/png/cake-contrib-medium.png</iconUrl>
       <requireLicenseAcceptance>false</requireLicenseAcceptance>
       <copyright>Copyright (c) NineTail Labs 2018</copyright>
-      <releaseNotes>Use NetStandard2.0
-        Updated Cake requirement to v0.28.0</releaseNotes>
+      <releaseNotes>Cake version update
+        Updated Cake requirement to v0.33.0</releaseNotes>
       <tags>Cake Script Addin GitHub Release</tags>
 
       <dependencies>
-          <dependency id="Cake.Core" version="0.28.0" />
+          <dependency id="Cake.Core" version="0.33.0" />
       </dependencies>
    </metadata>
 
